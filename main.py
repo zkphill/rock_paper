@@ -17,12 +17,12 @@ Created on Jan 13, 2016
 # 3 - lizard
 # 4 - scissors
 
-# helper functions
 
 
 import random
 
 
+# helper functions
 
 
 def name_to_number(name):
@@ -74,8 +74,7 @@ def rpsls(player_choice):
     player_number = name_to_number(player_choice)
 
 # compute random guess for comp_number using random.randrange()
-    for num in range (0,5):
-        comp_number = num
+    comp_number = random.randrange(0,5)
     
 # convert comp_number to comp_choice using the function number_to_name()
     comp_choice = number_to_name(comp_number)
@@ -84,17 +83,17 @@ def rpsls(player_choice):
     print "Computer chooses " + comp_choice
     
 # compute difference of comp_number and player_number modulo five
-    winner = (comp_number - player_number) % 5
+    game_result = (comp_number - player_number) % 5
     
 # use if/elif/else to determine winner, print winner message
-    if winner == 0:
-        print "tie"
-    elif (winner == 1) or (winner == 2):
-        print "comp"
-    elif (winner == 3) or (winner == 4):
-        print "player"
+    if game_result == 0:
+        print "Player and computer tie!"
+    elif (game_result == 1) or (game_result == 2):
+        print "Computer wins!"
+    elif (game_result == 3) or (game_result == 4):
+        print "Player wins!"
     else:
-        print "error"
+        print "Error, game result is out of range!"
     
 # test your code - THESE CALLS MUST BE PRESENT IN YOUR SUBMITTED CODE
 rpsls("rock")

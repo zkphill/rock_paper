@@ -17,13 +17,9 @@ Created on Jan 13, 2016
 # 3 - lizard
 # 4 - scissors
 
-
-
 import random
 
-
-# helper functions
-
+# helper functions name_to_number and number_to_name
 
 def name_to_number(name):
 # converts name to number using if/elif/else
@@ -41,9 +37,6 @@ def name_to_number(name):
     else :
         print "Invalid option "
 
-    
-
-
 def number_to_name(number):
 # converts number to a name using if/elif/else
     
@@ -60,16 +53,14 @@ def number_to_name(number):
     else:
         return "Invalid option "
     
-    
-    
-
-def rpsls(player_choice): 
+def rpsls(player_choice,fout): 
 # print a blank line to separate consecutive games
     print ""   
-    
+    fout.write("\n")
 # print out the message for the player's choice
     print "Player chooses " + player_choice
-
+    fout.write("Player chooses " + player_choice + "\n")
+    
 # convert the player's choice to player_number using the function name_to_number()
     player_number = name_to_number(player_choice)
 
@@ -81,6 +72,7 @@ def rpsls(player_choice):
     
 # print out the message for computer's choice
     print "Computer chooses " + comp_choice
+    fout.write("Computer chooses " + comp_choice + "\n")
     
 # compute difference of comp_number and player_number modulo five
     game_result = (comp_number - player_number) % 5
@@ -88,18 +80,31 @@ def rpsls(player_choice):
 # use if/elif/else to determine winner, print winner message
     if game_result == 0:
         print "Player and computer tie!"
+        fout.write("Player and computer tie!" + "\n")
     elif (game_result == 1) or (game_result == 2):
         print "Computer wins!"
+        fout.write("Computer wins!" + "\n")
     elif (game_result == 3) or (game_result == 4):
         print "Player wins!"
+        fout.write("Player wins!" + "\n")
     else:
         print "Error, game result is out of range!"
+        fout.write("bad game input")
     
 # test your code - THESE CALLS MUST BE PRESENT IN YOUR SUBMITTED CODE
-rpsls("rock")
-rpsls("Spock")
-rpsls("paper")
-rpsls("lizard")
-rpsls("scissors")
+
+fout = open('results.txt', 'w')
+
+for num in range(1, 101):
+    rpsls("rock", fout)
+    rpsls("Spock", fout)
+    rpsls("paper", fout)
+    rpsls("lizard", fout)
+    rpsls("scissors", fout)
+
+fout.close()
+
+
+
 
 # always remember to check your completed program against the grading rubric
